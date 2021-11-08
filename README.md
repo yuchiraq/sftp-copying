@@ -10,6 +10,11 @@
 ```
 g++ prog.cpp -o prog -lssh -lsqlite3
 ```
+Требуются некторые библиотеки для С++:
+```
+sudo apt-get install libssh-dev
+sudo apt-get install libsqlite3-dev
+```
 
 Файл настроек назван set.txt(можно любое).
 Формат:
@@ -24,3 +29,5 @@ sql_user=user_name
 sql_password=password
 sql_database=database_name
 ```
+
+Перед выполнением программы необходимо добавить удалённую систему в ssh known_hosts.
