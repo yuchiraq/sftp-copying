@@ -1,0 +1,9 @@
+sftp_host=172.20.10.6
+sftp_port=22
+sftp_user=gospodin
+sftp_password=password
+sftp_remote_dir=/home/chiraq/unik/РС
+local_dir=/home/chiraq/C++ LAB/to
+sql_user=user
+sql_password=password
+sql_database=sftp.sqlite3
