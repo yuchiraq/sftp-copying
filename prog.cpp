@@ -19,15 +19,13 @@ sqlite3 *db;
 void sql_connect(char user[], char password[], char db_name[]){
     char sql_create_table[] = "CREATE TABLE IF NOT EXISTS sftp_copy(file_name, time);";
     char *errmsg;
-
     if(sqlite3_open(db_name, &db)){
         cout << "Ошибка SQL: " << sqlite3_errmsg(db) << endl;
         exit(0);
-    }else if(sqlite3_exec(db, sql_create_table, 0, 0, &errmsg)){
+    }else if(sqlite3_exec(db, sql_create_table, 0, 0, &errmsg)){                        // создание таблицы
         cout << "Ошибка SQL: " << errmsg << endl;
         exit(0);
     }
-
 }
 
 void settings_file_format(){
@@ -40,7 +38,6 @@ void settings_file_format(){
     cout << "sql_user=user_name" << endl;
     cout << "sql_password=password" << endl;
     cout << "sql_database=database_name" << endl << endl;
-
 }
 
 void connect_to_ssh(char host[], char port[], char user[], char password[]){
