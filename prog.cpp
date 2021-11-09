@@ -157,7 +157,7 @@ void sftp_copy(char path[], char ldir[]){
 }
 
 
-static int callback(void *data, int argc, char **argv, char **azColName){   //для вывода из БД
+int callback(void *data, int argc, char **argv, char **azColName){   //для вывода из БД
     cout << azColName[0] << "▎ " << argv[0] << endl;
     cout << azColName[1];
     for(int i = 0; i <= strlen(azColName[0]) - strlen(azColName[1]) - 1; i++)
