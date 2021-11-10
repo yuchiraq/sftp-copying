@@ -40,7 +40,7 @@ void settings_file_format(){
     cout << "sql_database=database_name" << endl << endl;
 }
 
-void connect_to_ssh(char host[], char port[], char user[], char password[]){
+void connect_to_ssh(char host[], char port[], char user[], char password[]){            //подключение к ssh
     cout << endl << "Подключение..." << endl;
     int check_connect;
     ssh = ssh_new();
@@ -115,7 +115,7 @@ void sftp_copy(char path[], char ldir[]){
         strcpy(sql_record, "INSERT INTO sftp_copy(file_name, time) VALUES('");
         strcat(sql_record, read_file->name);
         strcat(sql_record, "','");
-        cout << path << "/" << read_file->name << " --> " << ldir << "/" << read_file->name << endl;
+        cout << endl << path << "/" << read_file->name << " --> " << ldir << "/" << read_file->name << endl;
         strcpy(lfile, ldir);
         strcpy(ofile, path);
         if(ofile[strlen(ofile)] != '/')
@@ -135,16 +135,16 @@ void sftp_copy(char path[], char ldir[]){
             else if (buf_size < 0){
                 cout << "Ошибка чтения: " <<  ssh_get_error(ssh) << endl;
                 sftp_close(file);
-                exit(0);
+                break;
             }
             new_file.write(buffer, buf_size);
             if (!new_file){
                 cout << "Ошибка записи" << endl;
                 sftp_close(file);
-                exit(0);
+                break;
             }
         }
-        now = time(NULL);
+        now = time(NULL);                                           //запись в БД
         ltm = localtime(&now);
         time_now = asctime(ltm);
         strcat(sql_record, time_now + 4);
@@ -152,7 +152,7 @@ void sftp_copy(char path[], char ldir[]){
         if(sqlite3_exec(db, sql_record, 0, 0, &errmsg)){
             cout << "Ошибка SQL: " << errmsg << endl;
             exit(0);
-        }
+        }                                                                   
     }
 }
 
